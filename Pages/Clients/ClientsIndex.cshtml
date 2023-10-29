@@ -1,0 +1,40 @@
+﻿@page
+@model UsersRolesStatus.Pages.Clients.ClientsIndexModel
+@{
+}
+
+<br />
+<h2>List of clients</h2>
+<a class="btn btn-primary mb-2" href="/Clients/Create">Add a new client</a>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Created at</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listClients)
+        {
+            <tr class="@(@item.user_status == "deactive" ? "table-secondary text-muted" : "")">
+                <td>@item.name</td>
+                <td>@item.id</td>
+                <td>@item.email</td>
+                <td>@item.created_at</td>
+                <td>@item.user_status</td>
+                <td>@item.user_role</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Clients/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm" href="/Clients/Delete?id=@item.id" onclick="return confirm('Are you sure about deleting @item.name?');">Delete</a>
+                    <a></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
